@@ -1,0 +1,30 @@
+server:
+  contextPath: /api/dev
+---
+spring:
+    profiles: test
+    name: test-YAML
+    datasource:
+      url: jdbc:postgresql://ambankdb.cbjcnotvlv6h.us-east-1.rds.amazonaws.com:5432/devdb
+      username: devdb
+      password: devdb123
+      tomcat:
+        max-active: 100
+        max-idle: 10
+        min-idle: 5
+        initial-size: 2
+        test-on-connect: true
+        test-on-borrow: true
+        validation-query: SELECT 1
+        validation-interval: 15000
+        remove-abandoned: false
+        remove-abandoned-timeout: 30
+    jpa:
+      generate-ddl: true
+    jackson:
+      serialization:
+        write-dates-as-timestamps: false
+    autoconfigure:
+      exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+---
+environment: dev
